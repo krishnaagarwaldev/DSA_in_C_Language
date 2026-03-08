@@ -1,0 +1,10 @@
+# Ignore executable files
+*.exe
+
+# Ignore compiled binaries
+*.out
+*.class
+
+# Ignore Python cache
+__pycache__/
+*.pyc
