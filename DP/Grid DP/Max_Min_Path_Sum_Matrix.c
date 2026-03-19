@@ -26,6 +26,7 @@ int dp[100][100];
 int mat[100][100];
 
 int max(int a, int b) { return (a > b) ? a : b; }
+int min(int a, int b) { return (a < b) ? a : b; }
 
 int maxPath(int i, int j, int n, int m) {
     if (i >= n || j >= m) return 0;             // out of bounds
@@ -37,6 +38,19 @@ int maxPath(int i, int j, int n, int m) {
     int down = maxPath(i + 1, j, n, m);
 
     return dp[i][j] = mat[i][j] + max(right, down);
+}
+
+
+int minPath(int i, int j, int n, int m) {
+    if (i >= n || j >= m) return 1000000; // out of bounds
+    if (i == n - 1 && j == m - 1) return mat[i][j]; // destination
+
+    if (dp[i][j] != -1) return dp[i][j];
+
+    int right = minPath(i, j + 1, n, m);
+    int down = minPath(i + 1, j, n, m);
+
+    return dp[i][j] = mat[i][j] + min(right, down);
 }
 
 int main() {
@@ -66,7 +80,7 @@ int main() {
 
     memset(dp, -1, sizeof(dp));
 
-    printf("Maximum path sum: %d\n", maxPath(0, 0, n, m)); 
-
+    //printf("Maximum path sum: %d\n", maxPath(0, 0, n, m)); 
+    printf("Minimum path sum: %d\n", minPath(0, 0, n, m));
     return 0;
 }
