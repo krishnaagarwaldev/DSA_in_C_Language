@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #define MAX 100
 #define INF 99999
 
@@ -88,18 +89,28 @@ void primMST(int n) {
 int main() {
     int n = 5;
 
-    int input[5][5] = {
-        {0, 2, 0, 6, 0},
-        {2, 0, 3, 8, 5},
-        {0, 3, 0, 0, 7},
-        {6, 8, 0, 0, 9},
-        {0, 5, 7, 9, 0}
-    };
+    // int input[5][5] = {
+    //     {0, 2, 0, 6, 0},
+    //     {2, 0, 3, 8, 5},
+    //     {0, 3, 0, 0, 7},
+    //     {6, 8, 0, 0, 9},
+    //     {0, 5, 7, 9, 0}
+    // };
+
+    memset(adj, 0, sizeof(adj)); // Initialize adjacency matrix
+
+    // User can also input the graph
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("Enter weight for edge (%d, %d) [0 if no edge]: ", i, j);
+            scanf("%d", &adj[i][j]);
+        }
+    }
 
     // Copy adjacency matrix
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            adj[i][j] = input[i][j];
+    // for (int i = 0; i < n; i++)
+    //     for (int j = 0; j < n; j++)
+    //         adj[i][j] = input[i][j];
 
     primMST(n);
 
